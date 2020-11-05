@@ -37,5 +37,5 @@ Model::Model(const std::string &filePath) {
 }
 
 void Model::setMeshes(std::vector<Mesh *> &_meshes) {
-    this->meshes = _meshes
+    this->meshes = _meshes;
 }

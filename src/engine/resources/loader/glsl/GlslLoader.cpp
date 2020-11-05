@@ -7,7 +7,7 @@
 #include "GlslLoader.h"
 #include "../../exceptions/ResourceException.h"
 
-Shader *GlslLoader::load(const std::string &filePath) {
+void GlslLoader::load(const std::string &filePath, Resource* resource) {
 
     auto dotIndex = filePath.find_last_of(".");
     auto cleanPath = filePath.substr(0, dotIndex);
@@ -35,9 +35,8 @@ Shader *GlslLoader::load(const std::string &filePath) {
         throw ResourceException(infoLog);
     }
 
-    auto* shader = new Shader();
+    auto* shader = (Shader*) resource;
     shader->setProgram(shaderProgram);
-    return shader;
 
 }
 

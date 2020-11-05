@@ -30,7 +30,7 @@ ResourceLoader *ResourceManager::getLoader(const std::string &filePath) {
 
 }
 
-std::shared_ptr<Resource> ResourceManager::getResource(const std::string &filePath, Resource* resource) {
+std::shared_ptr<Resource> ResourceManager::getResource(const std::string &filePath) {
 
     auto resource = this->resources.find(filePath);
 

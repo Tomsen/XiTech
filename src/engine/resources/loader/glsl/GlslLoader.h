@@ -15,7 +15,7 @@ private:
     unsigned int loadShaderSource(unsigned int shaderType, const std::string filePath);
 
 public:
-    Shader *load(const std::string &filePath) override;
+    void load(const std::string &filePath, Resource* shader) override;
 };
 
 
