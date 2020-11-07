@@ -13,6 +13,7 @@ class Shader : public Resource {
 private:
     unsigned int program;
 public:
+    Shader(const std::string &filePath);
     void setProgram(unsigned int program);
     [[nodiscard]] unsigned int getProgram() const;
 };

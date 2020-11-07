@@ -19,7 +19,6 @@ public:
     explicit Model(const std::string &filePath);
     explicit Model(Mesh* mesh, Shader* _shader);
     ~Model() override;
-    static Model load(const std::string &filePath);
     void render();
     void setMeshes(std::vector<Mesh*> &_meshes);
     void setShader(Shader* _shader);

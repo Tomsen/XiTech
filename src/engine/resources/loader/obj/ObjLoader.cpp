@@ -96,3 +96,7 @@ void ObjLoader::load(const std::string &filePath, Resource* resource) {
     model->setMeshes(meshes);
 
 }
+
+Model* ObjLoader::load(const std::string &filePath) {
+    return new Model(filePath);
+}

@@ -11,6 +11,7 @@
 class ResourceLoader {
 
 public:
+    virtual Resource* load(const std::string &filePath) = 0;
     virtual void load(const std::string &filePath, Resource* resource) = 0;
 };
 

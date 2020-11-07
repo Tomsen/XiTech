@@ -8,12 +8,9 @@
 ResourceManager* ResourceManager::instance = nullptr;
 
 ResourceManager::~ResourceManager() {
-    for (auto & loader : this->loaders) {
-        delete loader.second;
-    }
 }
 
-ResourceManager ResourceManager::get() {
+ResourceManager& ResourceManager::get() {
     if(instance != nullptr) {
         return *instance;
     }
@@ -24,13 +21,18 @@ ResourceManager ResourceManager::get() {
 ResourceLoader *ResourceManager::getLoader(const std::string &filePath) {
 
     auto index = filePath.find_last_of('.');
-    auto fileType = filePath.substr(index);
+    auto fileType = filePath.substr(index+1);
 
-    return this->loaders.find(fileType)->second;
+    auto loader = this->loaders.find(fileType);
 
+    if(loader != this->loaders.end()) {
+        return loader->second;
+    }  else {
+        return nullptr;
+    }
 }
 
-std::shared_ptr<Resource> ResourceManager::getResource(const std::string &filePath) {
+std::shared_ptr<Resource> ResourceManager::getResource(const std::string &filePath, Resource* resourceInstance) {
 
     auto resource = this->resources.find(filePath);
 
@@ -41,8 +43,9 @@ std::shared_ptr<Resource> ResourceManager::getResource(const std::string &filePa
     ResourceLoader* loader = this->getLoader(filePath);
 
     if(loader != nullptr) {
-        auto loadedResource = std::make_shared<Resource>(*loader->load(filePath));
-        this->resources[filePath] = loadedResource;
+        loader->load(filePath, resourceInstance);
+        auto loadedResource = std::make_shared<Resource>(*resourceInstance);
+        this->resources.insert(std::pair<std::string, std::shared_ptr<Resource>>(filePath, loadedResource));
         return loadedResource;
     }
 
@@ -53,7 +56,7 @@ std::shared_ptr<Resource> ResourceManager::getResource(const std::string &filePa
 void ResourceManager::registerLoader(const std::string &fileType, ResourceLoader *resourceLoader) {
 
     if(this->loaders.find(fileType) == this->loaders.end()) {
-        this->loaders[fileType] = resourceLoader;
+        this->loaders.insert(std::pair<std::string, ResourceLoader*>(fileType, resourceLoader));
     }
 
 }

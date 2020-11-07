@@ -6,6 +6,11 @@
 #include <fstream>
 #include "GlslLoader.h"
 #include "../../exceptions/ResourceException.h"
+#include "../ResourceLoaderRegistration.h"
+
+namespace XiTechRegistration {
+    ResourceLoaderRegistration<GlslLoader> _glslLoader("glsl");
+}
 
 void GlslLoader::load(const std::string &filePath, Resource* resource) {
 
@@ -40,7 +45,7 @@ void GlslLoader::load(const std::string &filePath, Resource* resource) {
 
 }
 
-unsigned int GlslLoader::loadShaderSource(unsigned int shaderType, const std::string filePath) {
+unsigned int GlslLoader::loadShaderSource(unsigned int shaderType, const std::string &filePath) {
 
     std::ifstream file(filePath);
     std::string source((std::istreambuf_iterator<char>(file)),
@@ -65,4 +70,8 @@ unsigned int GlslLoader::loadShaderSource(unsigned int shaderType, const std::st
 
     return shader;
 
+}
+
+Shader *GlslLoader::load(const std::string &filePath) {
+    return new Shader(filePath);
 }

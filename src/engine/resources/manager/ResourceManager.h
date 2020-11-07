@@ -22,10 +22,10 @@ private:
 
 public:
     ~ResourceManager();
-    static ResourceManager get();
+    static ResourceManager& get();
     void registerLoader(const std::string &fileType, ResourceLoader *resourceLoader);
     ResourceLoader* getLoader(const std::string &filePath);
-    std::shared_ptr<Resource> getResource(const std::string &filePath);
+    std::shared_ptr<Resource> getResource(const std::string &filePath, Resource* resourceInstance);
 };
 
 

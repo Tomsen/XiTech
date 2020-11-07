@@ -12,6 +12,7 @@
 class ObjLoader : public ResourceLoader {
 
 public:
+    Model* load(const std::string &filePath) override;
     void load(const std::string &filePath, Resource* model) override;
 
 };

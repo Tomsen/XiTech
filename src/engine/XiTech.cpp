@@ -4,8 +4,6 @@
 
 #include "XiTech.h"
 #include "hid/InputHandlerManager.h"
-#include "resources/loader/obj/ObjLoader.h"
-#include "resources/loader/glsl/GlslLoader.h"
 
 XiTech* XiTech::instance = nullptr;
 
@@ -22,11 +20,6 @@ XiTech XiTech::getInstance() {
 }
 
 void XiTech::run() {
-
-    auto test = ObjLoader().load("resources/model/smallBox/smallBox.obj");
-    auto shader = GlslLoader().load("resources/shader/simple/simple.glsl");
-
-    test->setShader(shader);
 
     while(!glfwWindowShouldClose(this->renderer.getWindow())) {
 

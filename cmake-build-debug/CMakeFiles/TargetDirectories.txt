@@ -1,3 +1,0 @@
-/home/sneakyfox/Documents/projects/xiTech/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/sneakyfox/Documents/projects/xiTech/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/sneakyfox/Documents/projects/xiTech/cmake-build-debug/CMakeFiles/xiTech.dir
